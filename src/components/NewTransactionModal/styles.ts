@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { darken } from "polished";
+import { darken, transparentize } from "polished";
 
 export const Container = styled.form`
   h2 {
@@ -49,30 +49,43 @@ export const TransactionTypeContainer = styled.div`
   margin: 1rem 0;
   display: flex;
   gap: 0.5rem;
+`;
 
-  button {
-    flex: 1;
-    height: 4rem;
-    border: 1px solid var(--input-border);
-    border-radius: 0.25rem;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    transition: border-color 0.2s;
+interface RadialBoxProps {
+  isActive: boolean;
+  activeColor: "green" | "red";
+}
 
-    &:hover {
-      border-color: ${darken(0.1, "#d7d7d7")};
-    }
-    span {
-      font-size: 1rem;
-      color: var(--text-title);
-    }
+const colors = {
+  green: "#33CC95",
+  red: "#E52E4D",
+};
 
-    img {
-      height: 24px;
-      width: 24px;
-    }
+export const RadialBox = styled.button<RadialBoxProps>`
+  flex: 1;
+  height: 4rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.25rem;
+  background: ${(props) =>
+    props.isActive
+      ? transparentize(0.9, colors[props.activeColor])
+      : "transparent"};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: ${darken(0.1, "#d7d7d7")};
+  }
+  span {
+    font-size: 1rem;
+    color: var(--text-title);
+  }
+
+  img {
+    height: 24px;
+    width: 24px;
   }
 `;
