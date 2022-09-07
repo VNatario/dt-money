@@ -8,8 +8,10 @@ import outcomeImg from "../../assets/outcome.svg";
 import totalImg from "../../assets/total.svg";
 
 export function Summary() {
-  const data = useContext(TransactionsContext);
-  console.log("usando useContext", data);
+  const transactions = useContext(TransactionsContext);
+
+  console.log("Summary", transactions);
+
   return (
     <Container>
       <div>
@@ -25,7 +27,7 @@ export function Summary() {
           <p>Saídas</p>
           <img src={outcomeImg} alt="Saídas" />
         </header>
-        <strong>R$ 1.238,25</strong>
+        <strong> - R$ 1.238,25</strong>
       </div>
 
       <div className="total">
